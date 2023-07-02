@@ -1,0 +1,6 @@
+rootProject.name = 'poformance'
+
+include 'controller'
+include 'agent'
+include 'analysis'
+include 'common'

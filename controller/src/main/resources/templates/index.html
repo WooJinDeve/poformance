@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Form</title>
+    <link th:href="@{/css/index.css}"
+          href="../css/index.css" rel="stylesheet">
+</head>
+<body>
+<form id="loadTestForm">
+    <div class="form-group">
+        <label for="method">Method:</label>
+        <select id="method" name="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="DELETE">DELETE</option>
+            <option value="UPDATE">UPDATE</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="uri">URI:</label>
+        <input type="text" id="uri" name="uri">
+    </div>
+
+    <div class="form-group">
+        <label for="headers">Headers:</label>
+        <div id="headers">
+            <div class="header">
+                <input type="text" name="headersName[]" placeholder="Name">
+                <input type="text" name="headersValue[]" placeholder="Value">
+            </div>
+        </div>
+        <button type="button" onclick="addHeader()">Add Header</button>
+    </div>
+
+    <div class="form-group">
+        <label for="body">Body:</label>
+        <textarea id="body" name="body"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="requestParameters">Request Parameters:</label>
+        <div id="requestParameters">
+            <div class="parameter">
+                <input type="text" name="requestParametersName[]" placeholder="Name">
+                <input type="text" name="requestParametersValue[]" placeholder="Value">
+            </div>
+        </div>
+        <button type="button" onclick="addParameter()">Add Parameter</button>
+    </div>
+
+    <div class="form-group">
+        <label for="agentNum">Agent Number:</label>
+        <select id="agentNum" name="agentNum">
+            <option value="">Select Agent Number</option>
+            <script>
+                for (var i = 1; i <= 100; i++) {
+                    document.write('<option value="' + i + '">' + i + '</option>');
+                }
+            </script>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="testTime">Test-Time(ms):</label>
+        <input type="text" id="testTime" name="testTime">
+    </div>
+
+
+    <div class="button-group">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </div>
+</form>
+<script th:src="@{js/index.js}"></script>
+</body>
+</html>
