@@ -1,10 +1,12 @@
 package com.poscodx.payload;
 
 import com.poscodx.KeyValue;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,11 +29,17 @@ public class AgentRunnerRequest {
                 id.toString(),
                 request.getUri(),
                 request.getMethod(),
-                request.getHeaders(),
-                request.getRequestParameters(),
+                emptyCheck(request.getHeaders()),
+                emptyCheck(request.getRequestParameters()),
                 request.getBody(),
                 request.getAgentNum() / size,
                 request.getTestTime()
         );
+    }
+
+    private static List<KeyValue> emptyCheck(List<KeyValue> keyValues) {
+        return keyValues.stream()
+                .filter(keyValue -> !keyValue.getKey().isBlank() && !keyValue.getValue().isBlank())
+                .collect(Collectors.toList());
     }
 }
